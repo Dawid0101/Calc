@@ -11,6 +11,8 @@ namespace Calculator
     {
         private object elements;
 
+        public object Number1 { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -21,7 +23,11 @@ namespace Calculator
 
             ResultText.Text = string.Empty;
             CurrentOperationText.Text = string.Empty;
+
+           
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -136,7 +142,40 @@ namespace Calculator
 
         private void ButtonPowerOff_Click(object sender, RoutedEventArgs e)
         {
-
+            CurrentOperationText.Text = string.Empty;
+            ResultText.Text = string.Empty;
         }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+
+            CurrentOperationText.Text = string.Empty;
+            ResultText.Text = string.Empty;
+        }
+
+        private void closeApp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            try
+            {
+                Close();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void minimizeApp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.WindowState = WindowState.Minimized;
+            }
+            catch
+                {
+
+                }
+        }
+
     }
 }
