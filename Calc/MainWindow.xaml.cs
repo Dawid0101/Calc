@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -7,9 +8,10 @@ namespace Calculator
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window 
     {
         private object elements;
+        private object send;
 
         public object Number1 { get; private set; }
 
@@ -24,7 +26,8 @@ namespace Calculator
             ResultText.Text = string.Empty;
             CurrentOperationText.Text = string.Empty;
 
-           
+            
+
         }
 
 
@@ -85,6 +88,24 @@ namespace Calculator
             CurrentOperationText.Text += "/";
         }
 
+        private void ButtonPercent_Click(object sender, RoutedEventArgs e)
+        {
+            var operation = CurrentOperationText.Text;
+
+            if (ContainsOperation(operation))
+            {
+                CurrentOperationText.Text = CalculateResult(operation).ToString();
+            }
+            CurrentOperationText.Text += "%";
+        }
+        private void ButtonDot_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CurrentOperationText.Text.Contains('.'))
+            {
+                CurrentOperationText.Text += ".";
+            }
+
+        }
         private void ButtonResult_Click(object sender, RoutedEventArgs e)
         {
             var operation = CurrentOperationText.Text;
@@ -95,7 +116,7 @@ namespace Calculator
             CurrentOperationText.Text = string.Empty;
         }
 
-        private bool ContainsOperation(string operation) => operation.Contains('+') || operation.Contains('-') || operation.Contains('*') || operation.Contains('/');
+        private bool ContainsOperation(string operation) => operation.Contains('+') || operation.Contains('-') || operation.Contains('*') || operation.Contains('/') || operation.Contains('%');
         private int CalculateResult(string operation)
         {
             if (operation.Contains('+'))
@@ -104,7 +125,7 @@ namespace Calculator
                 var elements = operation.Split('+');
 
                 return int.Parse(elements[0]) + int.Parse(elements[1]);
-
+                
 
 
             }
@@ -137,6 +158,15 @@ namespace Calculator
 
 
             }
+            if (operation.Contains('%'))
+            {
+                var elements = operation.Split('%');
+                return int.Parse(elements[0]) % int.Parse(elements[1]);
+            }
+            
+            
+            
+
             return default;
         }
 
@@ -177,5 +207,34 @@ namespace Calculator
                 }
         }
 
+        private void Backspace_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentOperationText.Text.Length == 1)
+            {
+                CurrentOperationText.Text = "";
+
+            }
+            
+           
+            else  
+            {
+                
+                
+                CurrentOperationText.Text = CurrentOperationText.Text.Substring(0, CurrentOperationText.Text.Length - 1);
+            }
+
+            
+        }
+        
+        
+        private void CurrentOperationText_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == System.Windows.Input.Key.Return)
+            {
+                CurrentOperationText.Text = CurrentOperationText.Text;
+            }
+        }
+
+        
     }
 }

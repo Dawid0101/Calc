@@ -8,7 +8,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Height="550" Width="300" AllowsTransparency="False" 
         WindowStyle="None"  ResizeMode="NoResize" 
-        WindowStartupLocation="CenterScreen" Background="{x:Null}">
+        WindowStartupLocation="CenterScreen" Background="{x:Null}"
+        Icon="E:\C#\WPF\Calc\Calc\Image\calculator.png">
 
     <Window.Resources>
         <Storyboard x:Key="PowerOff">
@@ -44,17 +45,28 @@
     </Window.Triggers>
     <Border Background="#2e2a2a" >
         <Grid>
+
             <StackPanel>
                 <Grid Height="210">
-                    <StackPanel Background="#292727">
-                        <Ellipse Fill="#FFD39E12" Height="15" Width="15" RenderTransformOrigin="0.500,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,35,0" MouseLeftButtonDown="minimizeApp"/>
+                    
+                    <StackPanel Background="#292727" x:Name="Panel1">
+                        <Ellipse Fill="#FFD39E12" Height="15" Width="15" 
+                                 RenderTransformOrigin="0.500,0.5" 
+                                 HorizontalAlignment="Right" VerticalAlignment="Top" 
+                                 Margin="0,10,35,0" MouseLeftButtonDown="minimizeApp" 
+                                 />
+                        
+
+
                         <Ellipse Fill="#FFC90E0E" Grid.Row="0" Height="15" Width="15" RenderTransformOrigin="0.500,0.5" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, -15, 10, 0" MouseLeftButtonDown="closeApp"/>
-                        <Button HorizontalAlignment="Left" Margin="10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+
+                        <Label x:Name="informationLabel" Height="31" Margin="30 30 20 20" Foreground="Gray"  FontFamily="Bahnschrift Condensed" FontSize="20" />
+
                     </StackPanel>
                     <StackPanel VerticalAlignment="Bottom" Background="#292727">
-                        <TextBlock x:Name="CurrentOperationText" FontSize="20"  FontFamily="Oswald"  TextAlignment="Right"
-                       Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0"/>
-                        <TextBlock Foreground="#292727" x:Name="ResultText" FontSize="50" FontFamily="Oswald"  TextAlignment="Right"
+                        <TextBlock  x:Name="CurrentOperationText" FontSize="30"  FontFamily="Bahnschrift Condensed"  TextAlignment="Right"
+                       Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0"  FontWeight="Heavy"/>
+                        <TextBlock Foreground="#292727" x:Name="ResultText" FontSize="50" FontFamily="Bahnschrift Condensed"  TextAlignment="Right"
                         Margin="20 0">
                             <TextBlock.Effect>
                                 <DropShadowEffect BlurRadius="10" ShadowDepth="1" Color="#FF5885A4"/>
@@ -64,7 +76,7 @@
                 </Grid>
 
 
-                <Grid>
+                <Grid x:Name="Panel3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
@@ -79,8 +91,24 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
 
+                    <Button Grid.Column="0" Grid.Row="0" Margin="10,5,9,5" Foreground="#36d174"
+                   x:Name="Backspace" 
+                    
+                  Style="{StaticResource MaterialDesignFloatingActionButton}"
+                  BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Click="Backspace_Click">
+                        <materialDesign:PackIcon Kind="Arrow" Width="28" Height="24" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                            <materialDesign:PackIcon.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </materialDesign:PackIcon.RenderTransform>
+                        </materialDesign:PackIcon>
+                    </Button>
 
-                    <Button Grid.Column="0" Grid.Row="0" Margin="5" Foreground="#36d174"
+                    <Button Grid.Column="1" Grid.Row="0" Margin="5" Foreground="#36d174"
                    x:Name="Reset" Click="Reset_Click"
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
@@ -88,12 +116,20 @@
                         <materialDesign:PackIcon Kind="LetterC" Width="40" Height="50" />
                     </Button>
 
+                    <Button Grid.Column="2" Grid.Row="0" Margin="5" Foreground="#36d174"
+                   x:Name="ButtonPercent" Click="ButtonPercent_Click" 
+                    
+                  Style="{StaticResource MaterialDesignFloatingActionButton}"
+                  BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
+                        <materialDesign:PackIcon Kind="Percent" Width="30" Height="40" />
+                    </Button>
+
                     <Button Grid.Column="3" Grid.Row="0" Margin="5" Foreground="#b8162e"
                   x:Name="ButtonDivide" Click="ButtonDivide_Click"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
-                        <materialDesign:PackIcon Kind="Divide" Width="40" Height="50" />
+                        <materialDesign:PackIcon Kind="Divide" Width="30" Height="50" />
                     </Button>
 
                     <Button Grid.Column="0" Grid.Row="1" Margin="5"
@@ -122,18 +158,19 @@
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
-                        <materialDesign:PackIcon Kind="Multiply" Width="40" Height="50" />
+                        <materialDesign:PackIcon Kind="Multiply" Width="30" Height="40" />
                     </Button>
 
                     <Button Grid.Column="0" Grid.Row="2" Margin="5"
-                  x:Name="Button4" Click="Button_Click" 
+                  x:Name="Button4" Click="Button_Click"
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                  BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
+                  BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" 
+                            Background="#FF292727">
                         <materialDesign:PackIcon Kind="Number4" Width="40" Height="50" />
                     </Button>
                     <Button Grid.Column="1" Grid.Row="2" Margin="5"
-                  x:Name="Button5" Click="Button_Click" 
+                  x:Name="Button5" Click="Button_Click"
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
@@ -152,7 +189,7 @@
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
-                        <materialDesign:PackIcon Kind="Plus" Width="40" Height="50" />
+                        <materialDesign:PackIcon Kind="Plus" Width="30" Height="50" />
                     </Button>
 
                     <Button Grid.Column="0" Grid.Row="3" Margin="5" 
@@ -180,7 +217,7 @@
                             x:Name="ButtonMinus" Click="ButtonMinus_Click"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
-                        <materialDesign:PackIcon Kind="Minus" Width="40" Height="50" />
+                        <materialDesign:PackIcon Kind="Minus" Width="30" Height="50" />
 
                     </Button>
 
@@ -199,11 +236,12 @@
                         <materialDesign:PackIcon Kind="Number0" Width="40" Height="50" />
                     </Button>
 
+                     
                     <Button Grid.Column="3" Grid.Row="4" Margin="5" Background="#FF292727" Foreground="#b8162e"
                             x:Name="ButtonResult" Click="ButtonResult_Click" 
                   Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
-                        <materialDesign:PackIcon Kind="Equal" Width="40" Height="50" />
+                        <materialDesign:PackIcon Kind="Equal" Width="30" Height="50" />
 
                     </Button>
                 </Grid>
@@ -216,6 +254,12 @@
                     <materialDesign:PackIcon Kind="Power" Width="80" Height="80"/>
                 </Button>
             </Border>
+
+
+
+
+
+
         </Grid>
     </Border>
 </Window>
