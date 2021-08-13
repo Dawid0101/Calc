@@ -64,7 +64,7 @@
 
                     </StackPanel>
                     <StackPanel VerticalAlignment="Bottom" Background="#292727">
-                        <TextBlock  x:Name="CurrentOperationText" FontSize="30"  FontFamily="Bahnschrift Condensed"  TextAlignment="Right"
+                        <TextBlock x:Name="ScreenValue" Text="{Binding ScreenValue}"  FontSize="30"  FontFamily="Bahnschrift Condensed"  TextAlignment="Right"
                        Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0"  FontWeight="Heavy"/>
                         <TextBlock Foreground="#292727" x:Name="ResultText" FontSize="50" FontFamily="Bahnschrift Condensed"  TextAlignment="Right"
                         Margin="20 0">
@@ -92,10 +92,10 @@
                     </Grid.RowDefinitions>
 
                     <Button Grid.Column="0" Grid.Row="0" Margin="10,5,9,5" Foreground="#36d174"
-                   x:Name="Backspace" 
+                   x:Name="Backspace" Command="{Binding BackspaceCommand}"
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
-                  BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Click="Backspace_Click">
+                  BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
                         <materialDesign:PackIcon Kind="Arrow" Width="28" Height="24" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
                             <materialDesign:PackIcon.RenderTransform>
                                 <TransformGroup>
@@ -109,7 +109,7 @@
                     </Button>
 
                     <Button Grid.Column="1" Grid.Row="0" Margin="5" Foreground="#36d174"
-                   x:Name="Reset" Click="Reset_Click"
+                   x:Name="Reset" Command="{Binding ClearCommand}"
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
@@ -117,7 +117,7 @@
                     </Button>
 
                     <Button Grid.Column="2" Grid.Row="0" Margin="5" Foreground="#36d174"
-                   x:Name="ButtonPercent" Click="ButtonPercent_Click" 
+                   x:Name="ButtonPercent" Command="{Binding AddOperationCommand}" CommandParameter="%"
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
@@ -125,7 +125,7 @@
                     </Button>
 
                     <Button Grid.Column="3" Grid.Row="0" Margin="5" Foreground="#b8162e"
-                  x:Name="ButtonDivide" Click="ButtonDivide_Click"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
+                  x:Name="ButtonDivide" Command="{Binding AddOperationCommand}" CommandParameter="/"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
@@ -133,28 +133,28 @@
                     </Button>
 
                     <Button Grid.Column="0" Grid.Row="1" Margin="5"
-                  x:Name="Button7" Click="Button_Click"  
+                  x:Name="Button7" Command="{Binding AddNumberCommand}" CommandParameter="7"  
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
                         <materialDesign:PackIcon Kind="Number7" Width="40" Height="50" />
                     </Button>
                     <Button Grid.Column="1" Grid.Row="1" Margin="5"
-                  x:Name="Button8" Click="Button_Click" 
+                  x:Name="Button8" Command="{Binding AddNumberCommand}" CommandParameter="8"  
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
                         <materialDesign:PackIcon Kind="Number8" Width="40" Height="50" />
                     </Button>
                     <Button Grid.Column="2" Grid.Row="1" Margin="5"
-                  x:Name="Button9" Click="Button_Click" 
+                  x:Name="Button9" Command="{Binding AddNumberCommand}" CommandParameter="9"  
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
                         <materialDesign:PackIcon Kind="Number9" Width="40" Height="50" />
                     </Button>
                     <Button Grid.Column="3" Grid.Row="1" Margin="5" Foreground="#b8162e"
-                           x:Name="ButtonMultiply" Click="ButtonMultiply_Click"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
+                           x:Name="ButtonMultiply" Command="{Binding AddOperationCommand}" CommandParameter="*"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
@@ -162,7 +162,7 @@
                     </Button>
 
                     <Button Grid.Column="0" Grid.Row="2" Margin="5"
-                  x:Name="Button4" Click="Button_Click"
+                  x:Name="Button4" Command="{Binding AddNumberCommand}" CommandParameter="4"  
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" 
@@ -170,14 +170,14 @@
                         <materialDesign:PackIcon Kind="Number4" Width="40" Height="50" />
                     </Button>
                     <Button Grid.Column="1" Grid.Row="2" Margin="5"
-                  x:Name="Button5" Click="Button_Click"
+                  x:Name="Button5" Command="{Binding AddNumberCommand}" CommandParameter="5"  
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
                         <materialDesign:PackIcon Kind="Number5" Width="40" Height="50" />
                     </Button>
                     <Button Grid.Column="2" Grid.Row="2" Margin="5"
-                            x:Name="Button6" Click="Button_Click" 
+                            x:Name="Button6" Command="{Binding AddNumberCommand}" CommandParameter="6"  
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
@@ -185,7 +185,7 @@
 
                     </Button>
                     <Button Grid.Column="3" Grid.Row="2" Margin="5" Foreground="#b8162e"
-                  x:Name="ButtonAdd" Click="ButtonAdd_Click"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
+                  x:Name="ButtonAdd" Command="{Binding AddOperationCommand}" CommandParameter="+"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
                     
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
@@ -193,28 +193,28 @@
                     </Button>
 
                     <Button Grid.Column="0" Grid.Row="3" Margin="5" 
-                           x:Name="Button1" Click="Button_Click"  
+                           x:Name="Button1" Command="{Binding AddNumberCommand}" CommandParameter="1"  
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727" >
                         <materialDesign:PackIcon Kind="Number1" Width="40" Height="50" />
                     </Button>
                     <Button Grid.Column="1" Grid.Row="3" Margin="5" 
-                            x:Name="Button2" Click="Button_Click"
+                            x:Name="Button2" Command="{Binding AddNumberCommand}" CommandParameter="2"  
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
                         <materialDesign:PackIcon Kind="Number2" Width="40" Height="50" />
 
                     </Button>
-                    <Button Grid.Column="2" Grid.Row="3" Margin="5" x:Name="Button3" Click="Button_Click" 
+                    <Button Grid.Column="2" Grid.Row="3" Margin="5" x:Name="Button3" Command="{Binding AddNumberCommand}" CommandParameter="3"  
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
                         <materialDesign:PackIcon Kind="Number3" Width="40" Height="50" />
                     </Button>
                     <Button Grid.Column="3" Grid.Row="3" Margin="5" Foreground="#b8162e"
-                            x:Name="ButtonMinus" Click="ButtonMinus_Click"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
+                            x:Name="ButtonMinus" Command="{Binding AddOperationCommand}" CommandParameter="-"  FontSize="20" FontWeight="Bold" FontFamily="Oswald"
                   Style="{StaticResource MaterialDesignFloatingActionButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
                         <materialDesign:PackIcon Kind="Minus" Width="30" Height="50" />
@@ -228,7 +228,7 @@
 
                     </Button>
                     <Button Grid.Column="1" Grid.Row="4" Margin="5"
-                         x:Name="Button0" Click="Button_Click" 
+                         x:Name="Button0" Command="{Binding AddNumberCommand}" CommandParameter="0"  
                            
                     
                   Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
@@ -238,11 +238,19 @@
 
                      
                     <Button Grid.Column="3" Grid.Row="4" Margin="5" Background="#FF292727" Foreground="#b8162e"
-                            x:Name="ButtonResult" Click="ButtonResult_Click" 
+                            x:Name="ButtonResult" Command="{Binding ResultCommand}"
                   Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                   BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}">
                         <materialDesign:PackIcon Kind="Equal" Width="30" Height="50" />
 
+                    </Button>
+                    <Button Grid.Column="2" Grid.Row="4" Margin="5"
+                         x:Name="common" Command="{Binding AddNumberCommand}" CommandParameter=","  
+                           
+                    
+                  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                  BorderThickness="1" BorderBrush="{StaticResource PrimaryHueMidBrush}" Background="#FF292727">
+                        <materialDesign:PackIcon Kind="Comma" Width="25" Height="30" />
                     </Button>
                 </Grid>
 

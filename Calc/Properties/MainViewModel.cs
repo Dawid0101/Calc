@@ -28,6 +28,30 @@ namespace Calc.Properties
             AddOperationCommand = new RelayCommand(AddOperation, CanAddOperation);
             ResultCommand = new RelayCommand(ResultOperation, CanGetResult);
             ClearCommand = new RelayCommand(ClearOperation);
+            BackspaceCommand = new RelayCommand(BackspaceOperation);
+        }
+
+        private void BackspaceOperation(object obj)
+        {
+           
+
+            if (ScreenValue.Length == 1)
+            {
+                ScreenValue.ToString();
+                ScreenValue = "";
+                
+
+            }
+
+
+            else
+            {
+
+                ScreenValue.ToString();
+                ScreenValue = ScreenValue.Substring(0, ScreenValue.Length - 1);
+                _isLastOperation = true;
+                
+            }
         }
 
         private bool CanGetResult(object obj) => !_isLastOperation;
@@ -78,6 +102,8 @@ namespace Calc.Properties
         public ICommand AddOperationCommand { get; set; }
         public ICommand ResultCommand { get; set; }
         public ICommand ClearCommand { get; set; }
+         
+        public ICommand BackspaceCommand { get; set; }
 
 
         public string ScreenValue
