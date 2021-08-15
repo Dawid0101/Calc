@@ -3,11 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Calc.Properties
@@ -20,7 +16,8 @@ namespace Calc.Properties
         private List<string> _availibleOperations = new List<string> { "+", "-", "/", "*" };
         private DataTable _dataTable = new DataTable();
         private bool _isLastOperation;
-        
+        private bool _isComma;
+
         public MainViewModel()
         {
             ScreenValue = "0";
@@ -29,17 +26,38 @@ namespace Calc.Properties
             ResultCommand = new RelayCommand(ResultOperation, CanGetResult);
             ClearCommand = new RelayCommand(ClearOperation);
             BackspaceCommand = new RelayCommand(BackspaceOperation);
+            AddComma = new RelayCommand(AddCommaOperation, CanAddComma);
+        }
+
+        private bool CanAddComma(object obj) => !_isComma;
+
+        private void AddCommaOperation(object obj)
+        {
+            var comma = obj as string;
+
+
+            if (ScreenValue == "0" && comma != ",")
+            {
+                ScreenValue = string.Empty;
+            }
+            else if (comma == "," && _availibleOperations.Contains(ScreenValue.Substring(ScreenValue.Length - 1)))
+            {
+                comma = "0,";
+            }
+            ScreenValue += comma;
+            _isComma = true;
+            _isLastOperation = false;
         }
 
         private void BackspaceOperation(object obj)
         {
-           
+
 
             if (ScreenValue.Length == 1)
             {
                 ScreenValue.ToString();
                 ScreenValue = "";
-                
+
 
             }
 
@@ -50,7 +68,7 @@ namespace Calc.Properties
                 ScreenValue.ToString();
                 ScreenValue = ScreenValue.Substring(0, ScreenValue.Length - 1);
                 _isLastOperation = true;
-                
+
             }
         }
 
@@ -63,6 +81,7 @@ namespace Calc.Properties
             ScreenValue = "0";
 
             _isLastOperation = false;
+            _isComma = false;
         }
 
         private void ResultOperation(object obj)
@@ -85,41 +104,45 @@ namespace Calc.Properties
         {
             var number = obj as string;
 
-            if(ScreenValue=="0" && number != ",")
+            if (ScreenValue == "0" && number != ",")
             {
                 ScreenValue = string.Empty;
-            }    
-            else if (number == "," && _availibleOperations.Contains(ScreenValue.Substring(ScreenValue.Length-1)))
+            }
+            else if (number == "," && _availibleOperations.Contains(ScreenValue.Substring(ScreenValue.Length - 1)))
             {
                 number = "0,";
             }
             ScreenValue += number;
 
             _isLastOperation = false;
+            _isComma = false;
         }
 
         public ICommand AddNumberCommand { get; set; }
         public ICommand AddOperationCommand { get; set; }
         public ICommand ResultCommand { get; set; }
         public ICommand ClearCommand { get; set; }
-         
         public ICommand BackspaceCommand { get; set; }
+        public ICommand AddComma { get; set; }
+
+
 
 
         public string ScreenValue
         {
             get { return _screenValue; }
-            set { 
+            set
+            {
                 _screenValue = value;
                 OnPropertyChanged();
-                }
+            }
         }
 
 
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new
                 PropertyChangedEventArgs(propertyName));

@@ -8,7 +8,7 @@ namespace Calculator
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window 
+    public partial class MainWindow : Window
     {
         private object elements;
         private object send;
@@ -25,13 +25,13 @@ namespace Calculator
 
             DataContext = new MainViewModel();
 
-            
+
 
         }
 
 
 
-        
+
 
         private void closeApp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -52,12 +52,12 @@ namespace Calculator
                 this.WindowState = WindowState.Minimized;
             }
             catch
-                {
+            {
 
-                }
+            }
         }
 
-       
+
 
         private void ButtonPowerOff_Click(object sender, RoutedEventArgs e)
         {
