@@ -61,6 +61,12 @@ namespace Calc.Properties
 
             }
 
+            else if(_isLastOperation = true)
+            {
+                ScreenValue.ToString();
+                ScreenValue = ScreenValue.Substring(0, ScreenValue.Length - 1);
+                _isLastOperation = false;
+            }
 
             else
             {
