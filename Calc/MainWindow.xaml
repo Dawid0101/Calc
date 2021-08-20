@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Height="550" Width="300" AllowsTransparency="False" 
         WindowStyle="None"  ResizeMode="NoResize" 
-        WindowStartupLocation="CenterScreen" Background="{x:Null}"
+        WindowStartupLocation="CenterScreen" Background="{x:Null}" 
         >
 
     <Window.Resources>
@@ -64,9 +64,9 @@
 
                     </StackPanel>
                     <StackPanel VerticalAlignment="Bottom" Background="#292727">
-                        <TextBlock x:Name="ScreenValue" Text="{Binding ScreenValue}"  FontSize="30"  FontFamily="Bahnschrift Condensed"  TextAlignment="Right"
+                        <TextBlock  x:Name="ScreenValue" Text="{Binding ScreenValue}"  FontSize="30"  FontFamily="Bahnschrift Condensed"  TextAlignment="Right"
                        Foreground="{StaticResource PrimaryHueLightForegroundBrush}" Margin="20 0"  FontWeight="Heavy"/>
-                        <TextBlock Foreground="#292727" x:Name="ResultText" FontSize="50" FontFamily="Bahnschrift Condensed"  TextAlignment="Right"
+                        <TextBlock Foreground="#292727" x:Name="ResultText" Text="{Binding ResultText}" FontSize="50" FontFamily="Bahnschrift Condensed"  TextAlignment="Right"
                         Margin="20 0">
                             <TextBlock.Effect>
                                 <DropShadowEffect BlurRadius="10" ShadowDepth="1" Color="#FF5885A4"/>

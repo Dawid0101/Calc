@@ -64,5 +64,9 @@ namespace Calculator
             ScreenValue.Text = string.Empty;
             ResultText.Text = string.Empty;
         }
+
+
+
+
     }
 }

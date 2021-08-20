@@ -11,7 +11,7 @@ namespace Calc.Properties
     public class MainViewModel : INotifyPropertyChanged
     {
 
-
+        private string _resultText;
         private string _screenValue;
         private List<string> _availibleOperations = new List<string> { "+", "-", "/", "*" };
         private DataTable _dataTable = new DataTable();
@@ -20,6 +20,7 @@ namespace Calc.Properties
 
         public MainViewModel()
         {
+            ResultText = "";
             ScreenValue = "0";
             AddNumberCommand = new RelayCommand(AddNumber);
             AddOperationCommand = new RelayCommand(AddOperation, CanAddOperation);
@@ -61,10 +62,12 @@ namespace Calc.Properties
 
             }
 
-            else if(_isLastOperation = true)
+            else if (_isLastOperation = true)
             {
                 ScreenValue.ToString();
+                ScreenValue = "0";
                 ScreenValue = ScreenValue.Substring(0, ScreenValue.Length - 1);
+                
                 _isLastOperation = false;
             }
 
@@ -85,6 +88,7 @@ namespace Calc.Properties
         private void ClearOperation(object obj)
         {
             ScreenValue = "0";
+            ResultText = "";
 
             _isLastOperation = false;
             _isComma = false;
@@ -93,8 +97,8 @@ namespace Calc.Properties
         private void ResultOperation(object obj)
         {
             var result = Math.Round(Convert.ToDouble((_dataTable.Compute(ScreenValue.Replace(",", "."), ""))), 2);
-
-            ScreenValue = result.ToString();
+            ResultText = result.ToString();
+            ScreenValue = "";
         }
 
         private void AddOperation(object obj)
@@ -132,7 +136,15 @@ namespace Calc.Properties
         public ICommand AddComma { get; set; }
 
 
-
+        public string ResultText
+        {
+            get { return _resultText; }
+            set
+            {
+                _resultText = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string ScreenValue
         {
